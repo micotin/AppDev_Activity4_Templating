@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MicoPlaylist - Trending</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .card {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border: none;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .card-body {
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .now-playing {
+            background: #343a40;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .wave {
+            height: 30px;
+            width: 100%;
+            background: linear-gradient(to right, #ffcc00, #ff6600);
+            opacity: 0;
+        }
+        .wave.active {
+            animation: wave 1s infinite;
+            opacity: 1;
+        }
+        @keyframes wave {
+            0% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+            100% { transform: scaleY(1); }
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+        }
+        audio {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+    <%- include('partials/header') %>
+
+    <div class="container mt-5">
+        <h2>Now Playing</h2>
+        <div class="now-playing">
+            <h5 id="now-playing-title">Song Title</h5>
+            <p id="now-playing-artist">Artist Name</p>
+            <div class="wave" id="wave"></div>
+        </div>
+
+        <h2>Trending Songs</h2>
+        <div class="grid">
+            <!-- Song 1 -->
+            <div class="card bg-secondary text-white">
+                <img src="/images/cameron.jpg" class="card-img-top" alt="Boyfriend">
+                <button class="btn btn-primary favorite-btn" data-song-id="1" onclick="addToFavorites('Boyfriend', 'Dove Cameron', 1)"> + Favorites</button>
+                <div class="card-body">
+                    <h5 class="card-title">Boyfriend</h5>
+                    <p class="card-text">Dove Cameron</p>
+                    <audio controls id="audio-1" onplay="updateNowPlaying('Boyfriend', 'Dove Cameron', this, 'audio-1')" onpause="stopWave()" onended="stopWave()">
+                        <source src="/music/boyfriend.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Song 2 -->
+            <div class="card bg-secondary text-white">
+                <img src="/images/zuttomo.jpg" class="card-img-top" alt="Zuttomo">
+                <button class="btn btn-primary favorite-btn" data-song-id="2" onclick="addToFavorites('Zuttomo', 'Millie Farfait', 2)"> + Favorites</button>
+                <div class="card-body">
+                    <h5 class="card-title">Zuttomo</h5>
+                    <p class="card-text">Zuttomo</p>
+                    <audio controls id="audio-2" onplay="updateNowPlaying('Zuttomo', 'Millie Farfait', this, 'audio-2')" onpause="stopWave()" onended="stopWave()">
+                        <source src="/music/zuttomo.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Song 3 -->
+            <div class="card bg-secondary text-white">
+                <img src="/images/renzotto.jpg" class="card-img-top" alt="Wanderer">
+                <button class="btn btn-primary favorite-btn" data-song-id="3" onclick="addToFavorites('Wanderer', 'Ren Zotto', 3)"> + Favorites</button>
+                <div class="card-body">
+                    <h5 class="card-title">Wanderer</h5>
+                    <p class="card-text">Ren Zotto</p>
+                    <audio controls id="audio-3" onplay="updateNowPlaying('Wanderer', 'Ren Zotto', this, 'audio-3')" onpause="stopWave()" onended="stopWave()">
+                        <source src="/music/wanderer.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Song 4 -->
+            <div class="card bg-secondary text-white">
+                <img src="/images/scarpenter.jpg" class="card-img-top" alt="Espresso">
+                <button class="btn btn-primary favorite-btn" data-song-id="4" onclick="addToFavorites('Espresso', 'Sabrina Carpenter', 4)"> + Favorites</button>
+                <div class="card-body">
+                    <h5 class="card-title">Espresso</h5>
+                    <p class="card-text">Sabrina Carpenter</p>
+                    <audio controls id="audio-4" onplay="updateNowPlaying('Espresso', 'Sabrina Carpenter', this, 'audio-4')" onpause="stopWave()" onended="stopWave()">
+                        <source src="/music/espresso.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        let currentAudio = null;
+
+        function updateNowPlaying(title, artist, audioElement, audioId) {
+            if (currentAudio && currentAudio !== audioElement) {
+                currentAudio.pause(); // Pause the currently playing audio
+                currentAudio.currentTime = 0; // Reset the current time
+            }
+            currentAudio = audioElement; // Update current audio reference
+            document.getElementById('now-playing-title').textContent = title;
+            document.getElementById('now-playing-artist').textContent = artist;
+            startWave();
+        }
+
+        function startWave() {
+            document.getElementById('wave').classList.add('active');
+        }
+
+        function stopWave() {
+            document.getElementById('wave').classList.remove('active');
+        }
+
+        function addToFavorites(songTitle, artistName, songId) {
+            fetch(`/favorites/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    songTitle: songTitle,
+                    artistName: artistName,
+                    songId: songId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`${songTitle} has been added to your favorites.`);
+                }
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>

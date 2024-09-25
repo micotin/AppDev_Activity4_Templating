@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MicoPlaylist - Search Results</title>
+</head>
+<body class="bg-dark text-light">
+    <%- include('partials/header') %>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Search Results for "<%= query %>"</h2>
+
+        <div class="row">
+            <% if (results.length > 0) { %>
+                <% results.forEach(song => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-secondary text-white">
+                            <img src="<%= song.image %>" class="card-img-top" alt="<%= song.title %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= song.title %></h5>
+                                <p class="card-text"><%= song.artist %></p>
+                                <audio controls class="w-100">
+                                    <source src="<%= song.src %>" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center">
+                    <div class="alert alert-warning" role="alert">
+                        No results found for "<%= query %>".
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/music/trending" class="btn btn-success">Back to Trending</a>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

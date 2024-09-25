@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>MicoPlaylist - Playlist</title>
+    <style>
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+    <%- include('partials/header') %>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Your Playlists</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/1" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist1.jpg" class="card-img-top" alt="Chill Vibes">
+                        <div class="card-body">
+                            <h5 class="card-title">Chill Vibes</h5>
+                            <p class="card-text">Relaxing tunes to wind down your day.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/2" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist2.jpg" class="card-img-top" alt="Workout Playlist">
+                        <div class="card-body">
+                            <h5 class="card-title">Workout Playlist</h5>
+                            <p class="card-text">Energetic tracks to boost your workouts.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/3" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist3.jpg" class="card-img-top" alt="Party Hits">
+                        <div class="card-body">
+                            <h5 class="card-title">Party Hits</h5>
+                            <p class="card-text">Get the party started with these tracks!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/4" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist4.jpg" class="card-img-top" alt="Throwback Classics">
+                        <div class="card-body">
+                            <h5 class="card-title">Throwback Classics</h5>
+                            <p class="card-text">Nostalgic hits from past decades.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/5" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist5.jpg" class="card-img-top" alt="Smooth Jazz">
+                        <div class="card-body">
+                            <h5 class="card-title">Smooth Jazz</h5>
+                            <p class="card-text">Calm and soothing jazz tracks.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="/music/playlist/6" class="text-decoration-none text-light">
+                    <div class="card bg-secondary text-white">
+                        <img src="/images/playlist6.jpg" class="card-img-top" alt="Indie Favorites">
+                        <div class="card-body">
+                            <h5 class="card-title">Indie Favorites</h5>
+                            <p class="card-text">Discover the best in indie music.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+body {
+    background-color: #121212; 
+}
+
+.card {
+    border: none; 
+    transition: transform 0.2s; 
+}
+
+.card:hover {
+    transform: scale(1.05); 
+}
+
+footer a {
+    color: #b3b3b3; 
+}
+
+footer a:hover {
+    color: #fff; 
+}
+
+.btn-success {
+    background.btn-success {
+        background-color: #1db954; 
+        border: none; 
+    }
+    
+    .btn-success:hover {
+        background-color: #1ed760; 
+    }
+    
+    .header {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    }
+    
+    .card-img-top {
+        height: 200px; 
+        object-fit: cover; 
+    }
+    
+    h2 {
+        margin-bottom: 20px; 
+    }
+}    
+
+
